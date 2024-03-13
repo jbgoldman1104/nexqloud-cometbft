@@ -335,9 +335,11 @@ func (vals *ValidatorSet) GetProposer() (proposer *Validator) {
 func (vals *ValidatorSet) findProposer() *Validator {
 	var proposer *Validator
 	for _, val := range vals.Validators {
-		if proposer == nil || !bytes.Equal(val.Address, proposer.Address) {
-			proposer = proposer.CompareProposerPriority(val)
-		}
+		proposer = proposer.CompareProposerPriority(val)
+		break
+		// if proposer == nil || !bytes.Equal(val.Address, proposer.Address) {
+		// 	proposer = proposer.CompareProposerPriority(val)
+		// }
 	}
 	return proposer
 }
